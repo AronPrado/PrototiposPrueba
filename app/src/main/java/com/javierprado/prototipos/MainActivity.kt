@@ -30,8 +30,6 @@ class MainActivity : AppCompatActivity() {
     private val canalId = "canalId"
     private val notificacionId = 0
 
-    private lateinit var yourCustomSoundUri: Uri
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = NotificacionSituacionBinding.inflate(layoutInflater)
@@ -50,8 +48,6 @@ class MainActivity : AppCompatActivity() {
         val titleTextView = mToolbar.getChildAt(0) as? TextView
         titleTextView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f)
 
-        yourCustomSoundUri = Uri.parse("android.resource://" + packageName + "/" + R.raw.clock)
-
         binding.buttonNoti.setOnClickListener {
             crearCanalNotificacion()
             crearNotificacion()
@@ -63,7 +59,6 @@ class MainActivity : AppCompatActivity() {
             val canalImportancia = NotificationManager.IMPORTANCE_HIGH
             val canal = NotificationChannel(canalId, canalNombre, canalImportancia)
 
-            canal.setSound(yourCustomSoundUri, AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_NOTIFICATION).build())
             canal.setShowBadge(true)
             canal.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
             canal.enableLights(true)
@@ -90,7 +85,6 @@ class MainActivity : AppCompatActivity() {
             it.priority = NotificationCompat.PRIORITY_HIGH
             it.setContentIntent(resultPendingIntent)
             it.setAutoCancel(true)
-            it.setSound(yourCustomSoundUri)
             it.setVibrate(longArrayOf(0, 1000, 1000, 1000))
             it.setOngoing(true)
         }.build()
