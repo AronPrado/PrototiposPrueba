@@ -50,8 +50,6 @@ class MainActivity : AppCompatActivity() {
         val titleTextView = mToolbar.getChildAt(0) as? TextView
         titleTextView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f)
 
-        yourCustomSoundUri = Uri.parse("android.resource://" + packageName + "/" + R.raw.clock)
-
         binding.buttonNoti.setOnClickListener {
             crearCanalNotificacion()
             crearNotificacion()
